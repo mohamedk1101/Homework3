@@ -7,71 +7,59 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f4f7f6; color: #333; }
         .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1, h2 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; text-align: center; }
         .mermaid { background: white; padding: 20px; border: 1px solid #ddd; border-radius: 4px; overflow-x: auto; }
-        ul { line-height: 1.8; }
         .footer { margin-top: 40px; font-size: 0.8em; color: #777; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Regional Epidemiology Center DBMS</h1>
+    <h1>Regional Epidemiology Center - Class Diagram</h1>
     
-    <h2>1. List of Forms and Reports</h2>
-    <ul>
-        <li><strong>Patient Tracking Form</strong> (Patient & Physician records)</li>
-        <li><strong>Test Results Report</strong> (Lab testing data)</li>
-        <li><strong>Disease Evidence Report</strong> (Symptom tracking)</li>
-        <li><strong>Multiple Disease Correlations Report</strong> (Illness tracking)</li>
-        <li><strong>Basic Disease Description Form</strong> (Medical commentary)</li>
-        <li><strong>Geographical Description Report</strong> (Regional analytics)</li>
-    </ul>
-
-    <h2>2. Class Diagram</h2>
     <pre class="mermaid">
     classDiagram
         class Regions {
-            +int RegionID
-            +string RegionName
-            +int Population
-            +int NumberOfPatients
+            RegionID
+            RegionName
+            Population
+            NumberOfPatients
         }
         class Patient {
-            +int PatientID
-            +string FirstName
-            +string LastName
-            +string Phone
-            +int RegionID
+            PatientID
+            FirstName
+            LastName
+            Phone
+            RegionID
         }
         class Physician {
-            +int PhysicianID
-            +string FirstName
-            +string LastName
-            +string Phone
+            PhysicianID
+            FirstName
+            LastName
+            Phone
         }
         class Test {
-            +int TestID
-            +string TestName
-            +string Results
-            +int PatientID
-            +int PhysicianID
+            TestID
+            TestName
+            Results
+            PatientID
+            PhysicianID
         }
         class Symptoms {
-            +int SymptomsID
-            +string Symptoms
-            +string Severity
-            +int PatientID
+            SymptomsID
+            Symptoms
+            Severity
+            PatientID
         }
         class Illness {
-            +int IllnessID
-            +string DiseaseName
-            +int PatientID
+            IllnessID
+            DiseaseName
+            PatientID
         }
         class IllnessDescription {
-            +int IllnessDescriptionID
-            +float DiagnoseProbability
-            +int IllnessID
+            IllnessDescriptionID
+            DiagnoseProbability
+            IllnessID
         }
 
         Regions "1" -- "*" Patient
@@ -89,7 +77,11 @@
 
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: 'neutral',
+        class: { useMaxWidth: false } 
+    });
 </script>
 
 </body>
