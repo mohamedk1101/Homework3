@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { font-family: sans-serif; line-height: 1.6; color: #333; }
+    .diagram-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; }
+    .class-box { border: 2px solid #2c3e50; border-radius: 5px; width: 250px; background: #f9f9f9; box-shadow: 3px 3px 5px rgba(0,0,0,0.1); }
+    .class-name { background: #2c3e50; color: white; text-align: center; padding: 8px; font-weight: bold; border-bottom: 2px solid #2c3e50; }
+    .attributes { padding: 10px; font-size: 0.85em; }
+    .relationships { margin-top: 30px; padding: 20px; background: #eee; border-radius: 8px; }
+    h2 { text-align: center; color: #2c3e50; }
+</style>
+</head>
+<body>
+
+<h2>Regional Epidemiology Center - Class Diagram</h2>
+
+<div class="diagram-container">
+    <div class="class-box">
+        <div class="class-name">Regions</div>
+        <div class="attributes">
+            RegionID [PK]<br>RegionName<br>Population<br>NumberOfPatients
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Patient</div>
+        <div class="attributes">
+            PatientID [PK]<br>FirstName<br>LastName<br>Age<br>Gender<br>Address<br>City<br>State<br>Phone<br>Occupation<br>EthnicBG<br>ContactName<br>ContactRelation<br>RegionID [FK]
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Physician</div>
+        <div class="attributes">
+            PhysicianID [PK]<br>FirstName<br>LastName<br>Address<br>Phone
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Test</div>
+        <div class="attributes">
+            TestID [PK]<br>TestName<br>TestDate<br>Results<br>PatientID [FK]<br>PhysicianID [FK]
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Symptoms</div>
+        <div class="attributes">
+            SymptomsID [PK]<br>Symptoms<br>Severity<br>TimeOfAppear<br>Comments<br>PatientID [FK]
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Illness</div>
+        <div class="attributes">
+            IllnessID [PK]<br>DiseaseName<br>Severity<br>DateDiscovered<br>PatientID [FK]
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">IllnessDescription</div>
+        <div class="attributes">
+            DescriptionID [PK]<br>DiagnoseProbability<br>Comments<br>IllnessID [FK]
+        </div>
+    </div>
+</div>
+
+<div class="relationships">
+    <strong>Associations:</strong>
+    <ul>
+        <li><strong>Regions (1) to Patient (*):</strong> One region contains multiple patients.</li>
+        <li><strong>Patient (1) to Test (*):</strong> One patient undergoes multiple tests.</li>
+        <li><strong>Physician (1) to Test (*):</strong> One physician orders multiple tests.</li>
+        <li><strong>Patient (1) to Symptoms (*):</strong> One patient exhibits multiple symptoms.</li>
+        <li><strong>Patient (1) to Illness (*):</strong> One patient is diagnosed with multiple illnesses.</li>
+        <li><strong>Illness (1) to IllnessDescription (1):</strong> One illness record maps to one detailed description.</li>
+    </ul>
+</div>
+
+</body>
+</html>
